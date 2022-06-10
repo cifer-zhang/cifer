@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="outer">
+        <div class="lists">
+            <div class="tatle"><span>选择器</span><span></span></div>
+            <ul>
+                <li><a href="">基本选择器</a></li>
+                <li><a href="">层级选择器</a></li>
+                <li><a href="">过滤选择器</a></li>
+                <li><a href="">属性选择器</a></li>
+                <li><a href="">内容选择器</a></li>
+                <li><a href="">子元素选择器</a></li>
+                <li><a href="">可见性选择器</a></li>
+                <li><a href="">表单选择器</a></li>
+                <li><a href="">表单对象选择器</a></li>
+            </ul>
+        </div>
+        <div class="lists">
+            <div class="tatle"><span>筛选器</span><span></span></div>
+            <ul>
+                <li><a href="">过滤</a></li>
+                <li><a href="">查找</a></li>
+                <li><a href="">关联</a></li>
+                <li><a href="">DOM操作</a></li>
+            </ul>
+        </div>
+        <div class="lists">
+            <div class="tatle"><span>样式</span><span></span></div>
+            <ul>
+                <li><a href="">CSS操作</a></li>
+                <li><a href="">位置</a></li>
+                <li><a href="">尺寸</a></li>
+            </ul>
+        </div>
+        <div class="lists">
+            <div class="tatle"><span>属性</span><span></span></div>
+            <ul>
+                <li><a href="">属性操作</a></li>
+                <li><a href="">CSS类</a></li>
+                <li><a href="">代码</a></li>
+                <li><a href="">文本</a></li>
+                <li><a href="">值</a></li>
+            </ul>
+        </div>
+    </div>
+    <script src="./jquery-3.5.1.js"></script>
+    <script>
+        $(function(){
+            //给每个标题添加单机事件
+            $('.lists .tatle').click(function(){
+                //排除去被点击的元素排他操作
+                $('.lists .tatle').not(this).removeClass('open').next().slideUp(500);
+                //触发 ul 隐藏显示动画效果
+                $(this).toggleClass('open').next().stop().slideToggle(500);
+            });
+
+        })
+    </script>
+</body>
+</html>

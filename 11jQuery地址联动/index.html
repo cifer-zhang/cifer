@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select name="" id="" class="Sheng"></select>
+    <select name="" id="" class="city"></select>
+
+
+    <script src="./jquery-3.5.1.js"></script>
+    <script>
+        let place = ['江苏省','上海市','河南省','安徽省'];
+        let city = [
+            ['江苏省1','江苏省2','江苏省3','江苏省4'],
+            ['上海市1','上海市2','上海市3','上海市4'],
+            ['河南省','河南省','河南省','河南省'],
+            ['安徽省','安徽省','安徽省','安徽省'],
+        ];
+
+        //遍历数组插入选项
+        place.forEach(function(item,index){
+            //创建新的 potion 选项 插入到下拉选项元素中
+            $('<option>').html(item).val(index).appendTo($('.Sheng'));
+
+        })
+
+
+        //监听第一个选项卡的change时间更改第二个选项卡中的内容
+        $('.Sheng').change(function(){
+            //清空当前下拉选项中的内容
+            $('.city').html(null);
+
+            //根据 index 的值遍历对应的城市数组
+            city[this.value].forEach(function(item,index){
+                //创建新的 potion 选项 插入到下拉选项元素中
+                $('<option>').html(item).appendTo($('.city'));
+
+            })
+
+        })
+
+        $('.Sheng').trigger('change');
+
+    </script>
+</body>
+</html>

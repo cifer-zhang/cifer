@@ -1,0 +1,65 @@
+<style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .play-box{
+            position: relative;
+            margin: 100px auto;
+            height: 350px;
+            width: 900px;
+            cursor: pointer;
+        }
+        .play-box img{
+            display: block;
+        }
+        .image-item{
+            display: none;
+        }
+        .image-item.active{
+            display: block;
+        }
+        .lists{
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+   
+        }
+        .lists ul{
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+        .numberPoint{
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 50%;
+            color: white;
+            border: 1px solid white;
+            background-color: #333;
+            margin: 4px;
+        }
+        .numberPoint.active{
+            color: red;
+            border: 1px solid red;
+        }
+        .btn-left,.btn-right{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 100px;
+            background-color: rgba(3, 3, 3, 0.596);
+            background: url('image/index.png') no-repeat;  
+        }
+        .btn-left{
+            left: 0;
+        }
+        .btn-right{
+            right: 0;
+            background-position: -50px 0;
+        }
+    </style>

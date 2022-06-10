@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--导入bootstrap CSS样式-->
+    <link rel="stylesheet" href="./bootstrap-3.4.1-dist/css/bootstrap.css">
+    <!--自己的样式-->
+    <style>
+        .jumbotron-content{
+          text-align: center;
+        }
+        .famous-img{
+          width: 100px;
+          height:100px;
+        }
+        .footer{
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
+        }
+    </style>
+  
+</head>
+<body>
+    <!--顶部导航栏-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">尚硅谷</a>
+                </div>
+            
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">首页 <span class="sr-only">(current)</span></a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">视频 <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">HTML</a></li>
+                        <li><a href="#">CSS</a></li>
+                        <li><a href="#">Javascript</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">jQuery</a></li>
+                        <li><a href="#">bootstrap</a></li>
+                      </ul>
+                    <li><a href="#">视频</a></li>
+                    <li><a href="#">关于</a></li>
+                  </ul>
+                  <form class="navbar-form navbar-left">
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default " type="button"><span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                      </div><!-- /input-group -->
+                  </form>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">新消息<span class="badge">4</span></a></li>
+                    <li><a href="#">注册</a></li>
+                    <li><a href="#">登录</a></li>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+          </div>
+    </nav>
+
+    <!--欢迎巨慕-->
+    <div class="jumbotron">
+      <div class="container jumbotron-content">
+        <h1>Hello, world!</h1>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum ad similique obcaecati dolorem nulla suscipit soluta, laboriosam eaque quidem architecto beatae quasi quam mollitia qui corporis explicabo! Perferendis, ad tenetur.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">更多</a></p>
+      </div>
+    </div>
+
+    <!--课程内容-->
+    <div class="container">
+        <h3>热门课程</h3>
+
+        <!--路径导航-->
+        <ol class="breadcrumb">
+          <li><a href="#">所有课程</a></li>
+          <li><a href="#">计算机IT</a></li>
+          <li class="active">前端开发</li>
+        </ol>
+
+        <!--缩略图-->
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="thumbnail">
+              <img src="./images/html5.jpg" alt="...">
+              <div class="caption">
+                <h3>HTML5</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos alias illum temporibus ut, nulla voluptate accusamus illo tempora praesentium incidunt iusto! Dolorem sed quod quam eius nihil cum repellat perspiciatis.</p>
+                <p><a href="#" class="btn btn-success" role="button">试听</a> <a href="#" class="btn btn-primary" role="button">购买</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="thumbnail">
+              <img src="./images/css.jpg" alt="...">
+              <div class="caption">
+                <h3>CSS</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos alias illum temporibus ut, nulla voluptate accusamus illo tempora praesentium incidunt iusto! Dolorem sed quod quam eius nihil cum repellat perspiciatis.</p>
+                <p><a href="#" class="btn btn-success" role="button">试听</a> <a href="#" class="btn btn-primary" role="button">购买</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="thumbnail">
+              <img src="./images/Ajax.jpg" alt="...">
+              <div class="caption">
+                <h3>Ajax</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos alias illum temporibus ut, nulla voluptate accusamus illo tempora praesentium incidunt iusto! Dolorem sed quod quam eius nihil cum repellat perspiciatis.</p>
+                <p><a href="#" class="btn btn-success" role="button">试听</a> <a href="#" class="btn btn-primary" role="button">购买</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="thumbnail">
+              <img src="./images/BootStrap.jpg" alt="...">
+              <div class="caption">
+                <h3>BootStrap</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos alias illum temporibus ut, nulla voluptate accusamus illo tempora praesentium incidunt iusto! Dolorem sed quod quam eius nihil cum repellat perspiciatis.</p>
+                <p><a href="#" class="btn btn-success" role="button">试听</a> <a href="#" class="btn btn-primary" role="button">购买</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="thumbnail">
+              <img src="./images/Less.jpg" alt="...">
+              <div class="caption">
+                <h3>Less</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos alias illum temporibus ut, nulla voluptate accusamus illo tempora praesentium incidunt iusto! Dolorem sed quod quam eius nihil cum repellat perspiciatis.</p>
+                <p><a href="#" class="btn btn-success" role="button">试听</a> <a href="#" class="btn btn-primary" role="button">购买</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="thumbnail">
+              <img src="./images/jQuery.jpg" alt="...">
+              <div class="caption">
+                <h3>jQuery</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos alias illum temporibus ut, nulla voluptate accusamus illo tempora praesentium incidunt iusto! Dolorem sed quod quam eius nihil cum repellat perspiciatis.</p>
+                <p><a href="#" class="btn btn-success" role="button">试听</a> <a href="#" class="btn btn-primary" role="button">购买</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="thumbnail">
+              <img src="./images/js高级.jpg" alt="...">
+              <div class="caption">
+                <h3>JavaScript高级</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos alias illum temporibus ut, nulla voluptate accusamus illo tempora praesentium incidunt iusto! Dolorem sed quod quam eius nihil cum repellat perspiciatis.</p>
+                <p><a href="#" class="btn btn-success" role="button">试听</a> <a href="#" class="btn btn-primary" role="button">购买</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="thumbnail">
+                <img src="./images/js.jpg" alt="...">
+                <div class="caption">
+                  <h3>JavaScript</h3>
+                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos alias illum temporibus ut, nulla voluptate accusamus illo tempora praesentium incidunt iusto! Dolorem sed quod quam eius nihil cum repellat perspiciatis.</p>
+                  <p><a href="#" class="btn btn-success" role="button">试听</a> <a href="#" class="btn btn-primary" role="button">购买</a></p>
+                </div>
+              </div>
+            </div>
+        </div><!--row-->
+    
+    
+      </div>
+
+      <!--页码-->
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li>
+            <a href="#" aria-label="Previous">
+              <span aria-hidden="true">上一页</span>
+            </a>
+          </li>
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><a href="#">...</a></li>
+          <li><a href="#">54</a></li>
+          <li>
+            <a href="#" aria-label="Next">
+              <span aria-hidden="true">下一页</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!--资讯-->
+      <div class="news">
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="article">
+                <h2>咨询</h2>
+                <h3>硅谷前沿技术会暨同学会圆满举办</h3>
+                <small class="text-muted">2019-04-23 特约撰稿人马冬梅</small>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis rerum nihil odit amet illum dicta, aperiam corporis maxime repudiandae nesciunt ut laborum, nulla officia! Voluptatibus vitae quod recusandae laborum magnam.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum molestias, amet et dolores accusantium blanditiis, tempora neque velit necessitatibus optio nobis, itaque fuga deleniti? Quia aperiam quod odit sed maxime perferendis, aspernatur odio cupiditate molestias culpa repudiandae corrupti amet dolores quasi animi porro at libero est. Ratione ad omnis assumenda?</p>
+                <!--进度条-->
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+                    <span class="sr-only">40% Complete</span>
+                    40%
+                  </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolor ut sit eveniet? Sequi voluptates error aperiam doloremque. Esse minima neque error reprehenderit. Sequi et nobis, expedita nam nemo odio.</p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <ul class="list-group text-primary">
+                <li class="list-group-item">震惊!新冠病毒进化成丧尸病毒&nbsp;<span class="label label-danger">紧急！危险！</span></li>
+                <li class="list-group-item">丧失病毒正在扩散大家务必不要出门开门！&nbsp;<span class="label label-danger">紧急！危险！</span></li>
+                <li class="list-group-item">中国军队已与丧尸在上海交战&nbsp;<span class="label label-success">最新</span></li>
+                <li class="list-group-item">务必居家等待军队救援&nbsp;<span class="label label-danger">紧急！危险！</span></li>
+                <li class="list-group-item">日本政府军队已经丧尸攻陷，政府要员正往西伯利亚转移&nbsp;<span class="label label-success">最新</span></li>
+                <li class="list-group-item">上海彻底沦陷</li>
+                <li class="list-group-item">中国军队对上海层层包围坚决阻断病毒外扩</li>
+                <li class="list-group-item">上海被列为中国首个生化无人区</li>
+              </ul>
+            </div>
+          </div>
+      </div>
+
+      <!--名人点评-->
+      <div class="famous-talks">
+        <h2>名人点评</h2>
+
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object img-circle famous-img" src="./images/4.jpg" alt="...">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">Media heading</h4>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis quo non rem magni fugiat nisi rerum nemo quas inventore praesentium, enim numquam cumque et temporibus, illo pariatur blanditiis? Impedit, at!
+          </div>
+        </div>
+     
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object img-circle famous-img" src="./images/4.jpg" alt="...">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">Media heading</h4>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis quo non rem magni fugiat nisi rerum nemo quas inventore praesentium, enim numquam cumque et temporibus, illo pariatur blanditiis? Impedit, at!
+          </div>
+        </div>
+
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object img-circle famous-img" src="./images/4.jpg" alt="...">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">Media heading</h4>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis quo non rem magni fugiat nisi rerum nemo quas inventore praesentium, enim numquam cumque et temporibus, illo pariatur blanditiis? Impedit, at!
+          </div>
+        </div>
+    </div>
+
+    <div class="footer">
+      <span>@copyright 1999-2019 尚硅谷版权所有</span>
+    </div>
+
+    <!--导入jQuery-->
+    <script src="./bootstrap-3.4.1-dist/js/jquery-3.5.1.js"></script>
+    <!--导入bootstrap js-->
+    <script src="./bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span>地址：</span>
+    <select name="" id="sheng"></select>
+    <select name="" id="city"></select>
+
+
+    <script>
+        (function(){
+
+            var sheng = document.querySelector('#sheng');
+
+            var city = document.querySelector('#city')
+
+
+
+            var addSheng = ['江苏省','安徽省','台湾省','山东省','河南省'];
+
+            var addCity =[
+                ['徐州市','苏州市','常州市','泰州市'],
+                ['宿州市','芜湖市','合肥市','宣城市'],
+                ['台北市','台中市','台南市','基隆市'],
+                ['烟台市','青岛市','威海市','临沂市'],
+                ['许昌市','商丘市','开封市','洛阳市']
+            ]
+
+            //将省份遍历加入select元素
+            addSheng.forEach(function(item,index){
+                //创建新的select选项 值为数组的值 value是数组对应的索引
+                var newOption = new Option(item,index);
+                //将创建的数组添加进对应的select
+                sheng.add(newOption)
+            
+            });
+            
+            /*先执行一次 防止默认江苏省 城市是空的
+            (function(){
+
+                addCity[0].forEach(function(item,index){
+                var newOption = new Option(item,index);
+
+                city.add(newOption);
+            }); 
+            })();*/
+
+            //给省份选框添加监听事件根据选择的选项添加城市选框的选项
+            sheng.onchange = function(){
+                //清空城市选框中的内容
+                city.innerHTML = '';
+
+                //遍历省索引对应城市的数组
+                addCity[this.value].forEach(function(item,index){
+                    //创建一个新的option
+                    var newOption = document.createElement('option')
+                    //给新创建的option添加内容
+                    newOption.innerHTML = item ; 
+                    newOption.value = index ;
+
+                    //将创建的数组添加进对应的select
+                    city.add(newOption)
+
+                });
+
+            }
+
+            sheng.onchange();
+        })();
+
+
+
+    </script>
+</body>
+
+
+</html>

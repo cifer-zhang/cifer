@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box img{
+            width: 100px;
+            height: 110px;
+            border-radius: 50%;
+            border: 5px solid #999;
+        }
+        .box img.active{
+            border-color: rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="./Ultraman/Ultraman4.jpg" alt="">
+        <img src="./Ultraman/Ultraman5.jpg" alt="">
+        <img src="./Ultraman/Ultraman6.jpg" alt="">
+        <img src="./Ultraman/Ultraman7.jpg" alt="">
+        <img src="./Ultraman/Ultraman8.jpg" alt="">
+        <img src="./Ultraman/Ultraman9.jpg" alt="">
+        <img src="./Ultraman/Ultraman10.jpg" alt="">
+        <img src="./Ultraman/Ultraman12.jpg" alt="">
+    </div>
+
+    <script src="./jquery-3.5.1.js"></script>
+    <script>
+
+        $('.box img').click(function(){
+            $(this).toggleClass('active')
+        })
+    </script>
+</body>
+</html>

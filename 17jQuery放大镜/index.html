@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="loupe">
+        <div class="small">
+            <img src="./images/small.jpg" alt="">
+            <div class="glass"></div>
+        </div>
+        <div class="big">
+            <img src="./images/big.jpg" alt="">
+        </div>
+    </div>
+    <!--引入jQuery-->
+    <script src="./jquery-3.5.1.js"></script>
+    <script>
+        $(function(){
+            //获取小图片距离页边的距离
+            let boxLeft = $('.small').offset().left;
+            let boxTop = $('.small').offset().top;
+ 
+            //给小图监听鼠标进入事件（.small）
+            $('.small').on('mousemove',function(event){
+                //获取 鼠标 在页面的位置 减去 小图 就是鼠标在小图元素上的位置 减去放大镜的一半
+                let left = event.pageX - boxLeft - $('.glass').outerWidth()/2; //通过鼠标的位置来确定放大镜的left定位
+                let top = event.pageY - boxTop - $('.glass').outerHeight()/2;  //通过鼠标的位置来确定放大镜的top定位
+                //判断left 和 top 的值使 放大镜不会移出 小图的范围
+                if(left < 0){
+                    left = 0;
+                }else if(left > $('.small').outerWidth() - $('.glass').outerWidth()){
+                    left = $('.small').outerWidth() - $('.glass').outerWidth();
+                };
+                if(top < 0){
+                    top = 0;
+                }else if(top > $('.small').outerHeight() - $('.glass').outerHeight()){
+                    top = $('.small').outerHeight() - $('.glass').outerHeight();
+                };
+                //console.log(event.offsetX,event.offsetY)
+                //放大镜随着鼠标移动
+                $(this).children('.glass').css({
+                    'display':'block',
+                    'left': left,
+                    'top': top
+                });
+
+                $('.big').css('display','block').scrollLeft(left * 3).scrollTop(top * 3);
+                console.log(left * 3,top * 3)
+            });
+            //监听 鼠标 离开原图事件 隐藏大图
+            $('.small').on('mouseleave',function(){
+
+                $('.glass').add('.big').css('display','none');
+
+
+            });
+
+        })
+
+
+    </script>
+</body>
+</html>

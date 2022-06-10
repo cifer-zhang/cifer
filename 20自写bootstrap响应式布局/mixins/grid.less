@@ -1,0 +1,11 @@
+//定义响应式栅格混合
+.cols(@size){
+
+    .thecols(@num)when(@num <= @cols){
+        .col-@{size}-@{num}{
+            width:percentage((@num/@cols));
+        }
+        .thecols(@num+1);
+    }
+    .thecols(1);
+}

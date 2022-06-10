@@ -1,0 +1,21 @@
+.outer{
+    display: flex;  
+    overflow: hidden;
+}
+.main{
+    margin: 200px auto;
+    width: 600px;
+}
+
+.images{
+    flex: 0 0 auto;
+    display: flex;
+}
+.images img{
+    flex: 0 0 auto;
+    width: 200px;
+    height: 200px;
+}
+.btns{
+    text-align: center;
+}

@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.outer{
+    margin:100px auto;
+}
+td{
+    width: 180px;
+    text-align: center;
+}
+input{
+    outline: none;
+    width: 176px;
+
+}
+.submit{
+    box-sizing: content-box;
+}

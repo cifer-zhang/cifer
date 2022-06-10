@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>您有一条需要拖动拽的模块</title>
+    <style>
+        .box{
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            background-color: cyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+
+
+    <script>
+        (function(){
+
+            setInterval(function(){
+
+                document.title = document.title.slice(1,) + document.title[0];
+
+            },300) 
+
+        }
+        )();
+        //存储鼠标在元素中的坐标
+        var offsetTop
+        var offsetLeft
+        // 获取html元素
+        var box = document.querySelector('.box')
+
+        // 给元素添加点击事件
+        box.addEventListener('mousedown',mouseDown)
+
+        // 给元素去除点击事件的变化
+        box.addEventListener('mouseup',mouseUp)
+        /**
+         * 改变box的颜色同时获取鼠标在box元素
+         * even 是一个复杂的参数对象  能过协助获取鼠标在box元素中的坐标
+         * */
+        function mouseDown(even){
+
+            box.style.backgroundColor = 'green' ;
+
+            //获取鼠标在元素中的坐标
+            offsetTop = even.offsetY;
+            offsetLeft = even.offsetX;
+            //box元素添加鼠标移动的监听
+            document.addEventListener('mousemove',mouseMove);
+        }
+
+        /**
+         * 还原点击事件
+        */
+       function mouseUp(){
+
+            box.style.backgroundColor = 'cyan' ;
+
+            document.removeEventListener('mousemove',mouseMove);
+       }
+
+       /**
+        * box元素的定位会随着鼠标的移动而移动
+       */
+       function mouseMove(even){
+            //获取鼠标在视口中的位置
+            var clientTop = even.clientY;
+            var clientLeft = even.clientX;
+
+            var top = clientTop - offsetTop;
+
+            var left = clientLeft - offsetLeft;
+
+            if(top < 0){
+                top = 0;
+            }else if(top > document.documentElement.clientHeight - box.offsetHeight){
+                top = document.documentElement.clientHeight - box.offsetHeight;
+            }
+
+            if(left < 0){
+                left =0
+            }else if (left > document.documentElement.clientWidth - box.offsetWidth){
+                left = document.documentElement.clientWidth - box.offsetWidth
+            }
+            //更改box元素的定位
+            box.style.top = top + 'px';
+            box.style.left = left + 'px';
+            
+       }
+    </script>
+</body>
+</html>

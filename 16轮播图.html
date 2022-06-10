@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .play-box{
+            position: relative;
+            margin: 100px auto;
+            height: 350px;
+            width: 900px;
+            cursor: pointer;
+        }
+        .play-box img{
+            display: block;
+        }
+        .image-item{
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity .8s;
+        }
+        .image-item.active{
+            opacity: 1;
+        }
+        .lists{
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+   
+        }
+        .lists ul{
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+        .numberPoint{
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 50%;
+            color: white;
+            border: 1px solid white;
+            background-color: #333;
+            margin: 4px;
+        }
+        .numberPoint.active{
+            color: red;
+            border: 1px solid red;
+        }
+        .btn-left,.btn-right{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 100px;
+            background-color: rgba(3, 3, 3, 0.596);
+            background: url('image/index.png') no-repeat;  
+        }
+        .btn-left{
+            left: 0;
+        }
+        .btn-right{
+            right: 0;
+            background-position: -50px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="play-box">
+        <!--轮播图片-->
+        <div class="content">
+            <a href="#" class="image-item active">
+                <img src="image/01.jpg" alt="轮播图">
+            </a>
+            <a href="#" class="image-item">
+                <img src="image/02.jpg" alt="轮播图">
+            </a>
+            <a href="#" class="image-item">
+                <img src="image/03.jpg" alt="轮播图">
+            </a>
+            <a href="#" class="image-item">
+                <img src="image/04.jpg" alt="轮播图">
+            </a>
+            <a href="#" class="image-item">
+                <img src="image/05.jpg" alt="轮播图">
+            </a>
+        </div>
+        <!-- 跳转页码 -->
+        <div class="lists">
+            <ul>
+                <li class="numberPoint active">1</li>
+                <li class="numberPoint">2</li>
+                <li class="numberPoint">3</li>
+                <li class="numberPoint">4</li>
+                <li class="numberPoint">5</li>
+            </ul>
+        </div>
+       <!--  翻页按钮 -->
+       <div class="btns">
+           <div class="btn-left"></div>
+           <div class="btn-right"></div>
+       </div>
+    </div>
+    <script>
+
+        (function(){
+            //获取按钮
+            var numberPoint = document.querySelectorAll('.numberPoint');
+            //获取所有图片的a标签
+            var imgs = document.querySelectorAll('.image-item');
+            //获取两侧按钮
+            var btnLeft = document.querySelector('.btn-left');
+            var btnRight = document.querySelector('.btn-right');
+
+
+
+
+            //遍历所有底部按钮监听点击事件
+            numberPoint.forEach(function(item,index){
+                //点击事件触发
+                item.onclick = function(){
+                    //遍历所有a标签
+                    imgs.forEach(function(item,index){
+                        //清除active属性 所有图片为隐藏
+                        item.classList.remove('active');
+                        //所有按钮清楚active属性 所有按钮均为未点击状态
+                        numberPoint[index].classList.remove('active');
+                    })
+                    //点击对象索引所对应的a标签添加active 图片为显示
+                    imgs[index].classList.add('active');
+                    //点击对象加active 按钮状态改变
+                    item.classList.add('active');
+                }
+            }); 
+
+
+
+            //点击左右按钮切换图片(自己的方法)
+            //监听右按钮事件
+            btnRight.addEventListener('click',rightClick)
+            //监听左侧按钮的点击事件
+            btnLeft.addEventListener('click',leftClick)
+
+
+            //右测按钮点击时候触发函数
+            function rightClick(){
+                //获取当前对应的底部按钮和显示的图片
+                var x = document.getElementsByClassName('numberPoint active')[0];//当前选择的按钮
+                var y = document.getElementsByClassName('image-item active')[0];//当前显示的图片
+        
+                //当前按钮取消选择
+                x.classList.remove('active');
+
+                //隐藏当前显示的图片
+                y.classList.remove('active');
+
+                //判断是否是最后一个选项和图片如果是 再点击下一张则从头开始选择
+                if(x.nextElementSibling){
+
+                    //下个按钮选择
+                    x.nextElementSibling.classList.add('active');
+
+                    //显示下一张土拍你
+                    y.nextElementSibling.classList.add('active');
+                }else{
+
+                    //选择第一个底部按钮
+                    numberPoint[0].classList.add('active');
+
+                    //显示第一张图片
+                    imgs[0].classList.add('active');
+                }
+            }
+
+
+            //左侧按钮点击时候触发的函数
+            function leftClick(){
+                //获取当前对应的底部按钮和显示的图片
+                var x = document.getElementsByClassName('numberPoint active')[0];//当前选择的按钮
+                var y = document.getElementsByClassName('image-item active')[0];//当前显示的图片
+
+                //当前按钮取消选择
+                x.classList.remove('active');
+
+                //隐藏当前显示的图片
+                y.classList.remove('active');
+
+                //判断当前所选的是否是第一个图片和按钮，如果是 再点击上一张则跳转到最后一个按钮和图片
+                if(x.previousElementSibling){
+
+                    //选择上一按钮
+                    x.previousElementSibling.classList.add('active');
+
+                    //显示上一张土拍你
+                    y.previousElementSibling.classList.add('active')
+                }else{
+
+                    //选择最后一个按钮
+                    numberPoint[numberPoint.length - 1].classList.add('active');
+
+                    //选择最后一个图片
+                    imgs[imgs.length - 1].classList.add('active');
+
+                }
+
+            }
+
+            //自动播放轮播图开启定时器
+            setInterval(rightClick,3000);
+
+
+        })()
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>垂直交错奥特们滚动条</title>
+    <!-- 引入bootstrap 样式文件 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- 自己的样式 -->
+    <style>
+        .outer{
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .left-sider{
+            background-color: red;
+        }
+        .left-sider,.right-sider{
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .left-sider.active{
+            scroll-behavior: smooth;
+        }
+        .right-sider.active{
+            scroll-behavior: smooth;
+        }
+        .top-btn{
+            position:absolute;
+            top: 50%;
+            left: 25%;
+            transform: translateY(-50%);
+        }
+        .down-btn{
+            position:absolute;
+            top: 50%;
+            right: 75%;
+            transform: translateY(50%);
+        }
+        .images img{
+            height:100vh;
+            width: 100%;
+        }
+        .name{
+            position: relative;
+            height:100vh;
+            width: 100%;
+        }
+        .name h1{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="col-md-3 left-sider">
+            <div class="names" id="names">
+                <div class="name"><h1>阿古茹</h1></div>
+                <div class="name"><h1>迪迦</h1></div>
+                <div class="name"><h1>盖亚</h1></div>
+                <div class="name"><h1>雷欧</h1></div>
+                <div class="name"><h1>诺亚</h1></div>
+                <div class="name"><h1>泰嘉</h1></div>
+            </div>
+        </div>
+        <div class="col-md-9 right-sider">
+            <div class="images" id="images">
+                <img src="./image/泰嘉.jpg" alt="">
+                <img src="./image/诺亚.jpg" alt="">
+                <img src="./image/雷欧.jpg" alt="">
+                <img src="./image/盖亚.jpg" alt="">
+                <img src="./image/迪迦.jpg" alt="">
+                <img src="./image/阿古茹.jpg" alt="">
+            </div>
+        </div>
+        <div class="btn">
+            <button class="glyphicon glyphicon-upload btn btn top-btn" id="top-btn"></button>
+            <button class="glyphicon glyphicon-download btn btn down-btn" id="down-btn"></button>
+        </div>
+    </div>
+    <script>
+        (function(){
+            //获取元素
+            let rightSider = document.querySelector('.right-sider');//右侧窗口
+            let leftSider = document.querySelector('.left-sider');//左侧窗口
+            let names = document.querySelector('#names')//获取右侧包含块
+            let images = document.querySelector('#images');//获取图片包含元素
+            let imgs = document.querySelectorAll('.images img');//获取图
+            let goTop = document.querySelector('#top-btn')
+            let goDwon = document.querySelector('#down-btn')
+
+            //定义单机次数存储值
+            let clickOn = 0;
+
+            
+            //获取单个图片的高度
+            let imgHeight = images.offsetHeight / (imgs.length);
+
+            //克隆滚动内容实现循环滚动
+            rightSider.appendChild(images.cloneNode(true));
+            leftSider.appendChild(names.cloneNode(true));
+
+            //窗口添加初始默认显示内容
+            rightSider.scrollTop = imgHeight * (imgs.length * 2 - 1);
+            
+            /***
+             * 定义函数向上滚动
+            */
+            function runTop(){
+                //添加滚动效果
+                rightSider.classList.add('active');
+                //滚动右侧
+                rightSider.scrollTop -= imgHeight;
+                
+
+                //添加滚动效果
+                leftSider.classList.add('active');
+                //滚动左侧
+                leftSider.scrollTop += imgHeight;
+            }
+            /***
+             * 定义函数向下滚动
+            */
+            function runDown(){
+
+                //添加滚动效果
+                rightSider.classList.add('active');
+                //滚动右侧
+                rightSider.scrollTop += imgHeight;
+
+                //添加滚动效果
+                leftSider.classList.add('active');
+                //滚动左侧
+                leftSider.scrollTop -= imgHeight;
+    
+            }
+            /***
+             * 按钮复位函数
+            */
+            function clearBtn(){
+                //按钮按下
+                clickOn++;
+                //定时归位按钮
+                setTimeout(function(){
+                    clickOn = 0;
+                },500)
+            }
+            //监听top按钮
+            goTop.addEventListener('click',function(){
+                //判断按钮是否归位 0 则为归位
+                if(clickOn === 0){
+                    //判断左边和右边滚动的位置
+                    if(rightSider.scrollTop - leftSider.scrollTop <  imgHeight){
+                        //清除丝滑滚动效果
+                        rightSider.classList.remove('active');
+                        leftSider.classList.remove('active');
+                        //滚动致起始位置 
+                        leftSider.scrollTop = 0;
+                        rightSider.scrollTop = imgHeight * (imgs.length * 2 - 1);
+                    }   
+                    //  向上滚动            
+                    runTop();
+                    //  按钮复位函数
+                    clearBtn()
+                }
+            })
+
+            //监听down按钮
+            goDwon.addEventListener('click',function(){
+   
+                if(clickOn === 0){
+                    console.log(leftSider.scrollTop,rightSider.scrollTop)
+                    if(leftSider.scrollTop === 0){
+                        //清除丝滑滚动效果
+                        rightSider.classList.remove('active');
+                        leftSider.classList.remove('active');
+                        //滚动致终点位置 
+                        leftSider.scrollTop =  images.offsetHeight;
+                        rightSider.scrollTop = images.offsetHeight - imgHeight;
+                    }
+                    //  向下滚动            
+                    runDown();
+                    //  按钮复位函数
+                    clearBtn()
+                }
+       
+            })
+        })();
+
+    </script>
+</body>
+</html>

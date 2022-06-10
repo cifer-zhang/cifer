@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        h1{
+            height: 200px;
+            line-height: 200px;
+        }
+        .nav{
+            background-color:black;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+
+        }
+        .nav.active{
+            position: fixed;
+            left: 0;
+            right: 0;
+            top:0;
+        }
+        .box{
+            display: flex;
+            justify-content: space-around;
+            height: 40px;
+            line-height: 40px;          
+        }
+        .nav a{
+            color: white;
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <h1>顶部导航栏吸附案例</h1>
+    <nav class="nav">
+        <div class="box">
+            <a href="">首页</a>
+            <a href="">他们</a>
+            <a href="">日韩</a>
+            <a href="">欧美</a>
+            <a href="">拉奥</a>
+            <a href="">举报</a>
+        </div>
+    </nav>
+    <div class="content">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam eius minus doloremque aliquam hic perspiciatis asperiores, aut, quisquam a quod recusandae consectetur ut dolorum repudiandae rerum adipisci enim est.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam eius minus doloremque aliquam hic perspiciatis asperiores, aut, quisquam a quod recusandae consectetur ut dolorum repudiandae rerum adipisci enim est.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam eius minus doloremque aliquam hic perspiciatis asperiores, aut, quisquam a quod recusandae consectetur ut dolorum repudiandae rerum adipisci enim est.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam eius minus doloremque aliquam hic perspiciatis asperiores, aut, quisquam a quod recusandae consectetur ut dolorum repudiandae rerum adipisci enim est.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam eius minus doloremque aliquam hic perspiciatis asperiores, aut, quisquam a quod recusandae consectetur ut dolorum repudiandae rerum adipisci enim est.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam eius minus doloremque aliquam hic perspiciatis asperiores, aut, quisquam a quod recusandae consectetur ut dolorum repudiandae rerum adipisci enim est.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam eius minus doloremque aliquam hic perspiciatis asperiores, aut, quisquam a quod recusandae consectetur ut dolorum repudiandae rerum adipisci enim est.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam eius minus doloremque aliquam hic perspiciatis asperiores, aut, quisquam a quod recusandae consectetur ut dolorum repudiandae rerum adipisci enim est.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam eius minus doloremque aliquam hic perspiciatis asperiores, aut, quisquam a quod recusandae consectetur ut dolorum repudiandae rerum adipisci enim est.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam eius minus doloremque aliquam hic perspiciatis asperiores, aut, quisquam a quod recusandae consectetur ut dolorum repudiandae rerum adipisci enim est.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam eius minus doloremque aliquam hic perspiciatis asperiores, aut, quisquam a quod recusandae consectetur ut dolorum repudiandae rerum adipisci enim est.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam eius minus doloremque aliquam hic perspiciatis asperiores, aut, quisquam a quod recusandae consectetur ut dolorum repudiandae rerum adipisci enim est.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam eius minus doloremque aliquam hic perspiciatis asperiores, aut, quisquam a quod recusandae consectetur ut dolorum repudiandae rerum adipisci enim est.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam eius minus doloremque aliquam hic perspiciatis asperiores, aut, quisquam a quod recusandae consectetur ut dolorum repudiandae rerum adipisci enim est.</p>
+    </div>
+    <script>
+
+        var nav = document.querySelector('.nav')
+
+        window.addEventListener('scroll',function(){
+
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+            var toTop = nav.offsetTop;
+
+    
+            if(scrollTop > toTop){
+                nav.classList.add('active');
+
+                nav.nextElementSibling.style.marginTop = '40px';
+            }else{
+                nav.classList.remove('active');
+
+                nav.nextElementSibling.style.marginTop = '';
+            }
+
+        })
+
+    </script>
+</body>
+</html>

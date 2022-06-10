@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="./jquery-3.5.1.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="outer">
+            <div class="images" id="images">
+                <img src="./Ultraman/Ultraman12.jpg" alt="">
+                <img src="./Ultraman/Ultraman22.jpg" alt="">
+                <img src="./Ultraman/Ultraman2.jpg" alt="">
+                <img src="./Ultraman/Ultraman26.jpg" alt="">
+                <img src="../Ultraman/Ultraman14.jpg" alt="">
+                <img src="./Ultraman/Ultraman16.jpg" alt="">
+            </div>
+        </div> 
+        <div class="btns">
+            <button id="left">左滚动</button>
+            <button id="right">右滚动</button>
+        </div>   
+    </div>
+
+
+    <script>
+        $(function(){
+            //定义一个变量用于存储图片滚动的方向 0 表示向左滚动 1 表示向右滚动
+            let direction = 1;
+            //复制图片组的内容 并插入到最后
+            $('#images').clone().appendTo($('.outer'));
+            //获取一组图片的长度
+            let imagesLength = $('#images:first').outerWidth();
+            //开始定时器 滚动 X 轴 向左滚动
+            let runTime = setInterval(run,10);
+
+            //监听鼠标进入停止滚动（清除计时器）
+            //监听鼠标离开再次开始滚动（开启计时器）
+            $('.outer').mouseenter(function(){
+                clearInterval(runTime);
+            }).mouseleave(function(){
+                runTime = setInterval(run,10);
+            });
+
+            //监听左滚动按钮点击事件
+            $('#left').click(function(){
+                //更改 direction 滚动方向的值
+                direction = 0; 
+            });
+
+            //监听右滚动按钮点击事件
+            $('#right').click(function(){
+                //更改 direction 滚动方向的值
+                direction = 1; 
+            }); 
+            
+            //定义一个滚动函数
+            function run(){
+                //判断direction的值是向哪个方向滚动的
+                if(direction){
+                    //判断滚动的值是否将一组图最左边
+                    if($('.outer').scrollLeft() <= 0){
+                        //跳转的 最右边 （终点） 滚动
+                        $('.outer').scrollLeft(imagesLength);
+                    }
+                    //每次 定时器 都滚动 3px
+                    $('.outer').scrollLeft($('.outer').scrollLeft() - 3);
+                }else{
+                    //判断滚动的值是否将一组图滚动完
+                    if($('.outer').scrollLeft() >= imagesLength){
+                        //跳转的 0 （最左边起点） 开始滚动
+                        $('.outer').scrollLeft(0);
+                    }
+                    //每次 定时器 都滚动 3px
+                    $('.outer').scrollLeft($('.outer').scrollLeft() + 3);
+                }
+
+            }
+
+
+        })
+    </script>
+</body>
+</html>

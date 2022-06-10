@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            /* 100% 的视口*/
+            height: 100vh;
+
+            background-color: cyan;
+
+            position: relative;
+
+        }
+        .contentor{
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 900px;
+            height: 450px;
+
+        }
+        .contentor ul{
+            list-style: none;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            display: flex;
+            justify-content:space-between ;
+
+            /* 让子元素在交叉轴靠下排列*/
+            align-items: flex-end;
+        }
+        .contentor ul li{
+            margin: 0px;
+            cursor: pointer;
+            text-align: center;
+            border: 5px solid transparent;
+            transition: .5s;
+        }
+        .contentor ul li img{
+            margin: 0px;
+            width: 170px;
+            height: 70px;
+            
+        }
+        .contentor ul .big-img{
+            position:absolute;
+            top: 0;
+            left: 0;
+            width: 900px;
+            height: 350px;
+            border: 0px;
+
+            background: url('image/01.jpg') no-repeat center;
+
+            background-position: center;
+
+            background-size: cover;
+
+        }
+        .contentor ul .frame{
+            position: absolute;
+            left: 0px;
+            bottom: 4px;
+            height: 80px;
+            width: 180px;
+            border: 5px solid #fff;
+            /* 这里有一个bug（闪烁） */
+            /* 加这个属性可以让移动框不会被鼠标捕捉到（解决闪烁这个bug） */    
+            pointer-events: none;
+            transition: .5s;
+        }
+        .contentor ul .frame::before{
+            content: '';
+            position: absolute;
+            background-color: #fff;
+            width: 30px;
+            height: 15px;
+            transform:translate(-15px,-19px);
+             /* 裁切出一个三角形 */
+             clip-path: polygon(0 100% ,50% 0,100% 100%);
+        }
+        .contentor ul li:nth-child(1):hover ~ .big-img{
+            background: url('image/01.jpg')
+        }
+        .contentor ul li:nth-child(2):hover ~ .big-img{
+            background: url('image/02.jpg')
+        }
+        .contentor ul li:nth-child(3):hover ~ .big-img{
+            background: url('image/03.jpg')
+        }
+        .contentor ul li:nth-child(4):hover ~ .big-img{
+            background: url('image/04.jpg')
+        }
+        .contentor ul li:nth-child(5):hover ~ .big-img{
+            background: url('image/05.jpg')
+        }
+        .contentor ul li:nth-child(1):hover ~ .frame{
+            left: 0px;
+        }
+        .contentor ul li:nth-child(2):hover ~ .frame{
+            left: 180px;
+        }
+        .contentor ul li:nth-child(3):hover ~ .frame{
+            left: 360px;
+        }
+        .contentor ul li:nth-child(4):hover ~ .frame{
+            left: 540px;
+        }
+        .contentor ul li:nth-child(5):hover ~ .frame{
+            left: 720px;
+        }
+    </style>
+</head>
+<body>
+    <div class="contentor">
+        <ul>
+            <li><img src="image/01.jpg" alt=""></li>
+
+            <li><img src="image/02.jpg" alt=""></li>
+
+            <li><img src="image/03.jpg" alt=""></li>
+
+            <li><img src="image/04.jpg" alt=""></li>
+
+            <li><img src="image/05.jpg" alt=""></li>
+
+            <li class="big-img"></li>
+
+            <li class="frame"></li>
+        </ul>
+    </div>
+</body>
+</html>

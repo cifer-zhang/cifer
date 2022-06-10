@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <table class="nums">
+        </table>
+    </div>
+</body>
+<script>
+    //定义一个数组
+    var nums = ['20','30','50','50','50','80','100','100','150','200','200','1000','1200','300','300','500','500','500','500','500','500','500','500','500','500'];
+    //获取表格元素
+    var theTable = document.querySelector('.nums');
+
+    //循环执行
+    for(i = 0;i < 200; i ++){
+
+        //生成数组的随机索引
+        var index =Math.floor( Math.random()*25 );
+
+
+        //创建一个表格的行标签
+        var tr = document.createElement('tr');
+
+        //将单元格添加到行中
+        tr.innerHTML = '<td>'+nums[index];
+
+
+        //给表格添加数据
+        theTable.appendChild(tr);
+
+    }
+
+    nums.forEach(item => console.log(`注册资金是${item}`));
+
+</script>
+</html>

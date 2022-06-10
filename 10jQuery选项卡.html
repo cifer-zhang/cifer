@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .selecter{
+            width: 400px;
+            margin: 100px auto;
+        }
+        ul{
+            padding: 0;
+            list-style: none;
+            height: 29px;
+            margin: 0px;
+            width: 399px;
+            display: flex;
+            background-color: #f5f5f5;
+            border-left: 1px solid #999;
+            border-bottom: 1px solid  #999;
+        }
+        .name{
+            padding: 0 20px;
+            height: 29px;
+            line-height: 30px;
+            border-top: 1px solid #999;
+            border-right: 1px solid #999;
+        }
+        .name.active{
+            background-color: #fff;
+            height: 30px;
+        }
+        .main div{
+            box-sizing: border-box;
+            display: none;
+            width: 400px;
+            height: 200px;
+            padding: 20px;
+            border: 1px solid #999;
+            border-top: 0;
+        }
+        .main div.active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="selecter">
+        <div class="list">
+            <ul>
+                <li class="name active">艾斯</li>
+                <li class="name">泰罗</li>
+                <li class="name">泽塔</li>
+                <li class="name">迪迦</li>
+                <li class="name">杰克</li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="active">北斗星司</div>
+            <div>东光太郎</div>
+            <div>哦嘶</div>
+            <div>大古</div>
+            <div>乡秀树</div>
+        </div>
+    </div>
+    <script src="./jquery-source/jquery-3.5.1.js"></script>
+    <script>
+        $(function(){
+            //监听 选项卡标题的 点击事件
+            $('.name').click(function(){
+                //触发单击事件后给点击的元素添加 active属性（选中状态） 其他兄弟选项卡清除 active属性 
+                $(this).addClass('active').siblings().removeClass('active');
+                //先清除所有 active属性（选中状态）  根据点击选项卡标题的 索引添加active属性（选中状态） 显示内容
+                $('.main div').removeClass('active').eq($(this).index()).addClass('active');
+
+            })
+        })
+
+
+    </script>
+</body>
+</html>

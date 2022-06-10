@@ -1,0 +1,35 @@
+//定义container
+.container{
+    margin:0 auto;
+    @media (@sm-width) {
+        width: @container-sm-width;
+    }
+    @media (@md-width) {
+        width: @container-md-width;
+    }
+    @media (@lg-width) {
+        width: @container-lg-width;
+    }
+}
+//定义row
+.row{
+    .clear();
+}
+
+//设置每列浮动
+[class *= 'col']{
+    float: left;
+    width: 100%;
+}
+
+//调用栅格布局函数
+.cols(xs);
+@media (@sm-width) {
+    .cols(sm);
+};
+@media (@md-width) {
+    .cols(md);
+};
+@media (@lg-width) {
+    .cols(lg);
+};

@@ -1,0 +1,36 @@
+.loupe{
+    position: relative;
+    width: 500px;
+    .small{
+        position: relative;
+        width: 400px;
+        height: 400px;
+        img{
+            width: 400px;
+            height: 400px; 
+        }
+        .glass{
+            display:none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: (400px/3);
+            height: (400px/3);
+            background-color: #ccc;
+            opacity: 0.6;
+        }
+    }
+    .big{
+        display: none;
+        position:absolute;
+        left: 400px + 8 + 10;
+        top: 0;
+        width: 400px;
+        height: 400px;
+        overflow: hidden;
+        img{
+            width: 1200px;
+            height: 1200px;
+        }
+    }
+}

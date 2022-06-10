@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .play-box{
+            position: relative;
+            margin: 100px auto;
+            height: 350px;
+            width: 900px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .play-box img{
+            display: block;
+        }
+        .content{
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            transition:left 0.8s;
+        }
+        .content .image-item{
+            flex: 0 0 auto;
+        } 
+        .lists{
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+   
+        }
+        .lists ul{
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+        .numberPoint{
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 50%;
+            color: white;
+            border: 1px solid white;
+            background-color: #333;
+            margin: 4px;
+        }
+        .numberPoint.active{
+            color: red;
+            border: 1px solid red;
+        }
+        .btn-left,.btn-right{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 100px;
+            background-color: rgba(3, 3, 3, 0.596);
+            background: url('image/index.png') no-repeat;  
+        }
+        .btn-left{
+            left: 0;
+        }
+        .btn-right{
+            right: 0;
+            background-position: -50px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="play-box">
+        <!--轮播图片-->
+        <div class="content">
+            <a href="#" class="image-item">
+                <img src="image/01.jpg" alt="轮播图">
+            </a>
+            <a href="#" class="image-item">
+                <img src="image/02.jpg" alt="轮播图">
+            </a>
+            <a href="#" class="image-item">
+                <img src="image/03.jpg" alt="轮播图">
+            </a>
+            <a href="#" class="image-item">
+                <img src="image/04.jpg" alt="轮播图">
+            </a>
+            <a href="#" class="image-item">
+                <img src="image/05.jpg" alt="轮播图">
+            </a>
+        </div>
+        <!-- 跳转页码 -->
+        <div class="lists">
+            <ul>
+                <li class="numberPoint active">1</li>
+                <li class="numberPoint">2</li>
+                <li class="numberPoint">3</li>
+                <li class="numberPoint">4</li>
+                <li class="numberPoint">5</li>
+            </ul>
+        </div>
+       <!--  翻页按钮 -->
+       <div class="btns">
+           <div class="btn-left"></div>
+           <div class="btn-right"></div>
+       </div>
+    </div>
+    <script>
+
+        (function(){
+            //获取轮播图整体包含块
+            var playBox = document.querySelector('.play-box');
+            //获取图片包含块
+            var content= document.querySelector('.content');
+            //获取按钮
+            var numberPoint = document.querySelectorAll('.numberPoint');
+            //获取两侧按钮
+            var btnLeft = document.querySelector('.btn-left');
+            var btnRight = document.querySelector('.btn-right');
+
+            //创建一个变量存储当前按钮索引，如果没有点击事件的话，索引为0 默认状态
+            activeIndex = 0;
+            //创建一个变量存储当前图片索引，如果没有点击事件的话，索引为0 默认状态
+            imgIndex = 0 ;
+            //复制一组图片方便跳转
+            content.innerHTML += content.innerHTML;
+            //监听上一页点击事件
+            btnLeft.addEventListener('click',prve)
+
+            //监听下一页点击事件
+            btnRight.addEventListener('click',next)
+
+            //开启定时器自动执行下一页
+            var setTime = setInterval(next,3000);
+
+            //监听轮播图包含块 鼠标进入事件 解除定时器
+            playBox.addEventListener('mouseenter',function(){
+                clearInterval(setTime);
+            })
+
+            //监听轮播图包含块 鼠标离开事件 重新开启定时器
+            playBox.addEventListener('mouseleave',function(){
+                setTime = setInterval(next,3000);
+            })
+            //监听事件用户离开页面关闭定时器，回到页面开启定时器
+
+            document.addEventListener('visibilitychange',function(){
+ 
+                if(document.visibilityState === 'visible'){
+                    setTime = setInterval(next,3000);
+                }else{
+                    clearInterval(setTime);
+                }
+            })
+
+            //遍历所有底部按钮监听点击事件
+            numberPoint.forEach(function(item,index){
+                //点击事件触发
+                item.onclick = function(){
+                    //获取当前索引
+                    activeIndex = imgIndex = index;
+
+                    setActive();
+                }
+            }); 
+
+            //定义函数 监听左侧上页按钮的执行上一页
+            function prve(){
+                -- activeIndex;
+                -- imgIndex;
+                //如果 当前索引为0 继续执行上一页 则跳转到最后一个轮播图和最后一个选中按钮
+                if(activeIndex < 0){
+                    activeIndex = numberPoint.length-1;
+                }
+                //如果图片索引小于0 则跳转到最后一组的第一个图
+                if(imgIndex < 0){
+                    content.style.transition = 'none';
+                    content.style.left = numberPoint.length * -900 + 'px';
+
+
+                    imgIndex = numberPoint.length-1;
+
+                }
+                //调用显示图片  *之所以用定时器 是阻止 定时器跳过 跳转过程 直接滑动
+                setTimeout(setActive,1);
+            }
+
+            //定义函数 监听左侧上页按钮的执行下一页
+            function next(){
+                ++ activeIndex;
+                ++ imgIndex;
+                //如果 当前索引为最大值 继续执行下一页 则跳转到第一个选中按钮
+                if(activeIndex > numberPoint.length-1){
+                    activeIndex = 0;
+                }
+                //判断如果轮播图此时显示第二组最后一张图则暂停动画效果直接跳转到第一个图片
+                if(imgIndex > numberPoint.length){
+                    content.style.transition= 'none' ;
+                    content.style.left = 0 + 'px';
+
+                    imgIndex = 1;
+                }
+                //调用显示图片  *之所以用定时器 是阻止 定时器跳过 跳转过程 直接滑动
+                setTimeout(setActive,1);
+            }
+
+            //定义函数显示当前轮播图和当前选中按钮
+            function setActive(){
+
+                //遍历所有a标签
+                numberPoint.forEach(function(item,index){
+                //所有按钮清楚active属性 所有按钮均为未点击状态
+                numberPoint[index].classList.remove('active');
+                })
+                //开启过度效果
+                content.style.transition='left 0.8s';
+                //点击对象索引所对应的 滑动图片标签
+                content.style.left = -imgIndex * 900 + 'px';
+                //点击对象加active 按钮状态改变
+                numberPoint[activeIndex].classList.add('active');
+
+            }
+
+
+        })()
+
+    </script>
+</body>
+</html>

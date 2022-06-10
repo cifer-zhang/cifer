@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li><input type="checkbox"> Lorem ipsum dolor sit amet.</li>
+        <li><input type="checkbox"> Lorem ipsum dolor sit amet.</li>
+        <li><input type="checkbox"> Lorem ipsum dolor sit amet.</li>
+        <li><input type="checkbox"> Lorem ipsum dolor sit amet.</li>
+        <li><input type="checkbox"> Lorem ipsum dolor sit amet.</li>
+        <li><input type="checkbox"> Lorem ipsum dolor sit amet.</li>
+        <li><input type="checkbox"> Lorem ipsum dolor sit amet.</li>
+        <li><input type="checkbox"> Lorem ipsum dolor sit amet.</li>
+    </ul>
+    <input type="checkbox">全选 
+    <button id="revers">反选</button>
+    <script src="./jquery-3.5.1.slim.min.js"></script>
+    <script>
+        $(function(){
+            
+            $('ul').next().change(function(){
+                //将每个多选按钮的 checked 属性 与 多选按钮 checked 属性同步
+                $('ul input').prop('checked',$('ul').next().prop('checked'));
+  
+
+            })
+
+            $('#revers').click(function(){
+
+                $('ul li input').each(function(index,item){
+                    
+                    // 每个多选按钮选项的 checked 值取反
+                    $(item).prop('checked',!$(item).prop('checked'));
+
+                })  
+            });
+        })
+ 
+    </script>
+</body>
+</html>
